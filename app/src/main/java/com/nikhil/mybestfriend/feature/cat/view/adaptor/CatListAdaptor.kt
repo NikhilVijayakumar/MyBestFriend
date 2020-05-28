@@ -31,7 +31,7 @@ class CatListAdaptor(val catList: MutableList<CatBreed>) :
 
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         holder.view.catName.text = catList.get(position).name
-        holder.view.catLifeSpan.text = catList.get(position).life_span
+        holder.view.catLifeSpan.text = catList.get(position).lifeSpan
         holder.view.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(CatListFragmentDirections.actionCatListFragmentToCatDetailFragment())

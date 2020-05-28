@@ -1,40 +1,60 @@
 package com.nikhil.mybestfriend.feature.cat.model
 
+import com.google.gson.annotations.SerializedName
+
 data class CatBreed(
     val adaptability: Int,
-    val affection_level: Int,
-    val alt_names: String,
-    val cfa_url: String,
-    val child_friendly: Int,
-    val country_code: String,
-    val country_codes: String,
+    @SerializedName("affection_level")
+    val affectionLevel: Int,
+    @SerializedName("alt_names")
+    val altNames: String,
+    @SerializedName("cfa_url")
+    val cfaUrl: String,
+    @SerializedName("child_friendly")
+    val childFriendly: Int,
+    @SerializedName("country_code")
+    val countryCode: String,
+    @SerializedName("country_codes")
+    val countryCodes: String,
     val description: String,
-    val dog_friendly: Int,
-    val energy_level: Int,
+    @SerializedName("dog_friendly")
+    val dogFriendly: Int,
+    @SerializedName("energy_level")
+    val energyLevel: Int,
     val experimental: Int,
     val grooming: Int,
     val hairless: Int,
-    val health_issues: Int,
+    @SerializedName("health_issues")
+    val healthIssues: Int,
     val hypoallergenic: Int,
     val id: String,
     val indoor: Int,
     val intelligence: Int,
     val lap: Int,
-    val life_span: String,
+    @SerializedName("life_span")
+    val lifeSpan: String,
     val name: String,
     val natural: Int,
     val origin: String,
     val rare: Int,
     val rex: Int,
-    val shedding_level: Int,
-    val short_legs: Int,
-    val social_needs: Int,
-    val stranger_friendly: Int,
-    val suppressed_tail: Int,
+    @SerializedName("shedding_level")
+    val sheddingLevel: Int,
+    @SerializedName("short_legs")
+    val shortLegs: Int,
+    @SerializedName("social_needs")
+    val socialNeeds: Int,
+    @SerializedName("stranger_friendly")
+    val strangerFriendly: Int,
+    @SerializedName("suppressed_tail")
+    val suppressedTail: Int,
     val temperament: String,
-    val vcahospitals_url: String,
-    val vetstreet_url: String,
+    @SerializedName("vcahospitals_url")
+    val vcahospitalsUrl: String,
+    @SerializedName("vetstreet_url")
+    val vetstreetUrl: String,
     val vocalisation: Int,
     val weight: CatWeight,
-    val wikipedia_url: String
+    @SerializedName("wikipedia_url")
+    val wikipediaUrl: String
 )

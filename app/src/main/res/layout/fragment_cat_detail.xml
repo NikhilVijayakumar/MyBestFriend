@@ -8,19 +8,19 @@
 
 
    <ImageView
-       android:id="@+id/dogImage"
+       android:id="@+id/catImageView"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginTop="16dp"
        android:src="@mipmap/ic_launcher"
-       android:scaleType="fitCenter"
        android:minHeight="200dp"
+       android:minWidth="200dp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent" />
 
    <TextView
-       android:id="@+id/dogName"
+       android:id="@+id/catName"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginTop="16dp"
@@ -28,32 +28,10 @@
        android:text="@string/cat_name"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/dogImage" />
+       app:layout_constraintTop_toBottomOf="@+id/catImageView" />
 
    <TextView
-       android:id="@+id/dogPurpose"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       style="@style/Text"
-       android:text="@string/cat_purpose"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/dogName" />
-
-   <TextView
-       android:id="@+id/dogTemperment"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       style="@style/Text"
-       android:text="@string/cat_temperment"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/dogPurpose" />
-
-   <TextView
-       android:id="@+id/dogLifeSpan"
+       android:id="@+id/catLifeSpan"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginTop="16dp"
@@ -61,7 +39,29 @@
        android:text="@string/life_span"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/dogTemperment" />
+       app:layout_constraintTop_toBottomOf="@+id/catName" />
+
+   <TextView
+       android:id="@+id/catOrigin"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="16dp"
+       style="@style/Text"
+       android:text="@string/cat_origin"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/catLifeSpan" />
+
+   <TextView
+       android:id="@+id/catDescription"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="16dp"
+       style="@style/Text"
+       android:text="@string/life_span"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/catOrigin" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

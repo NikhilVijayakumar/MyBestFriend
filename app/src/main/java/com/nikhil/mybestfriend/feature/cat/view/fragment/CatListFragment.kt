@@ -8,10 +8,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nikhil.mybestfriend.R
+import com.nikhil.mybestfriend.feature.api.CatAPIService
 import com.nikhil.mybestfriend.feature.base.view.BaseFragment
 import com.nikhil.mybestfriend.feature.cat.view.adaptor.CatListAdaptor
 import com.nikhil.mybestfriend.feature.cat.viewmodel.CatListViewModel
 import kotlinx.android.synthetic.main.fragment_cat_list.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class CatListFragment : BaseFragment() {
@@ -29,6 +33,16 @@ class CatListFragment : BaseFragment() {
 
     override fun initFragment() {
         initData()
+        callAPI()
+    }
+    /*Todo remove from here add to view model This is done for testing  api call */
+    private fun callAPI() {
+
+        val apiService = CatAPIService()
+        GlobalScope.launch(Dispatchers.Main) {
+            val breedList = apiService.getCatBreed();
+            catListAdaptor.updateList(breedList.await())
+        }
     }
 
     private fun initData() {

@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.nikhil.mybestfriend.feature.login.view.LoginFragment"
+        android:name="com.nikhil.mybestfriend.feature.auth.login.view.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.nikhil.mybestfriend.feature.register.view.RegisterFragment"
+        android:name="com.nikhil.mybestfriend.feature.auth.register.view.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/catListFragment"
-        android:name="com.nikhil.mybestfriend.feature.cat.view.fragment.CatListFragment"
+        android:name="com.nikhil.mybestfriend.feature.cat.listing.view.CatListFragment"
         android:label="fragment_cat_list"
         tools:layout="@layout/fragment_cat_list" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/catDetailFragment"
-        android:name="com.nikhil.mybestfriend.feature.cat.view.fragment.CatDetailFragment"
+        android:name="com.nikhil.mybestfriend.feature.cat.details.view.CatDetailFragment"
         android:label="fragment_cat_detail"
         tools:layout="@layout/fragment_cat_detail" >
         <action

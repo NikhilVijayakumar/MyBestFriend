@@ -11,6 +11,7 @@ import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.api.interceptor.ConnectivityInterceptorImpl
 import com.nikhil.mybestfriend.feature.api.service.CatAPIService
 import com.nikhil.mybestfriend.feature.base.view.BaseFragment
+import com.nikhil.mybestfriend.feature.cat.repo.CatDetailDataSourceImpl
 import com.nikhil.mybestfriend.feature.cat.viewmodel.CatDetailViewModel
 import kotlinx.android.synthetic.main.fragment_cat_detail.*
 import kotlinx.coroutines.Dispatchers
@@ -39,14 +40,19 @@ class CatDetailFragment : BaseFragment() {
     private fun callAPI() {
         context?.let {
             val apiService = CatAPIService(ConnectivityInterceptorImpl(it))
-            return@let GlobalScope.launch(Dispatchers.Main) {
-                val data = apiService.getCatDetails(breedIds="abys");
-                val catDetails = data.await().get(0)
-                catName.text = catDetails.breeds.get(0).name
-                catLifeSpan.text = catDetails.breeds.get(0).lifeSpan
-                catOrigin.text = catDetails.breeds.get(0).origin
-                catDescription.text = catDetails.breeds.get(0).description
+            val dataSource = CatDetailDataSourceImpl(apiService = apiService)
+            dataSource.catDetailList.observe(this, Observer {
+                val catDetails =it.get(0)
+                val breed = it.get(0).breeds.get(0)
+                catName.text = breed.name
+                catLifeSpan.text = breed.lifeSpan
+                catOrigin.text = breed.origin
+                catDescription.text = breed.description
                 loadImage(catDetails.url)
+            })
+
+            return@let GlobalScope.launch(Dispatchers.Main) {
+             dataSource.fetchCatBreed(breedIds="abys")
             }
         }
 

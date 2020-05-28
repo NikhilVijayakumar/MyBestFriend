@@ -8,7 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.nikhil.mybestfriend.R
-import com.nikhil.mybestfriend.feature.api.CatAPIService
+import com.nikhil.mybestfriend.feature.api.interceptor.ConnectivityInterceptorImpl
+import com.nikhil.mybestfriend.feature.api.service.CatAPIService
 import com.nikhil.mybestfriend.feature.base.view.BaseFragment
 import com.nikhil.mybestfriend.feature.cat.viewmodel.CatDetailViewModel
 import kotlinx.android.synthetic.main.fragment_cat_detail.*
@@ -36,17 +37,20 @@ class CatDetailFragment : BaseFragment() {
 
     /*Todo remove from here add to view model This is done for testing  api call */
     private fun callAPI() {
-
-        val apiService = CatAPIService()
-        GlobalScope.launch(Dispatchers.Main) {
-            val data = apiService.getCatDetails(breedIds="abys");
-            val catDetails = data.await().get(0)
-            catName.text = catDetails.breeds.get(0).name
-            catLifeSpan.text = catDetails.breeds.get(0).lifeSpan
-            catOrigin.text = catDetails.breeds.get(0).origin
-            catDescription.text = catDetails.breeds.get(0).description
-            loadImage(catDetails.url)
+        context?.let {
+            val apiService = CatAPIService(ConnectivityInterceptorImpl(it))
+            return@let GlobalScope.launch(Dispatchers.Main) {
+                val data = apiService.getCatDetails(breedIds="abys");
+                val catDetails = data.await().get(0)
+                catName.text = catDetails.breeds.get(0).name
+                catLifeSpan.text = catDetails.breeds.get(0).lifeSpan
+                catOrigin.text = catDetails.breeds.get(0).origin
+                catDescription.text = catDetails.breeds.get(0).description
+                loadImage(catDetails.url)
+            }
         }
+
+
     }
 
     private fun loadImage(url:String) {

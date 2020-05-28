@@ -1,6 +1,7 @@
-package com.nikhil.mybestfriend.feature.api
+package com.nikhil.mybestfriend.feature.api.service
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.nikhil.mybestfriend.feature.api.interceptor.ConnectivityInterceptor
 import com.nikhil.mybestfriend.feature.cat.model.CatBreed
 import com.nikhil.mybestfriend.feature.cat.model.CatDetails
 import kotlinx.coroutines.Deferred
@@ -36,14 +37,16 @@ interface CatAPIService {
     ): Deferred<List<CatDetails>>
 
     companion object {
-        operator fun invoke(
+        operator fun invoke(connectivityInterceptor: ConnectivityInterceptor
         ): CatAPIService {
             val requestInterceptor = Interceptor { chain ->
 
                 val url = chain.request()
                     .url
                     .newBuilder()
-                    .addQueryParameter("x-api-key", API_KEY)
+                    .addQueryParameter("x-api-key",
+                        API_KEY
+                    )
                     .build()
                 val request = chain.request()
                     .newBuilder()
@@ -59,6 +62,7 @@ interface CatAPIService {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(connectivityInterceptor)
                 .build()
 
             return Retrofit.Builder()

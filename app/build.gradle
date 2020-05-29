@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId "com.nikhil.mybestfriend"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -42,6 +42,7 @@ def glideVersion = '4.11.0'
 def roomVersion = '2.2.5'
 def navVersion = '2.3.0-beta01'
 def preferencesVersion = '1.1.1'
+def kodeinVersion = '5.2.0'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -70,7 +71,12 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 
+    // Kodein
+    implementation "org.kodein.di:kodein-di-generic-jvm:$kodeinVersion"
+    implementation "org.kodein.di:kodein-di-framework-android-x:$kodeinVersion"
 
+    // Better dateTime-time support even on older Android versions
+    implementation "com.jakewharton.threetenabp:threetenabp:1.1.0"
 
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 

@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.nikhil.mybestfriend.R
-import com.nikhil.mybestfriend.feature.cat.data.api.response.CatBreed
+import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
 import kotlinx.android.synthetic.main.item_cat.view.*
 
 
-class CatListAdaptor(val catList: MutableList<CatBreed>) :
+class CatListAdaptor(val catList: MutableList<UnitCatEntity>) :
     RecyclerView.Adapter<CatListAdaptor.CatViewHolder>() {
 
-    fun updateList(list: List<CatBreed>) {
+    fun updateList(list: List<UnitCatEntity>) {
         catList.clear();
         catList.addAll(list)
         notifyDataSetChanged()

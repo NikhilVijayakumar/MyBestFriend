@@ -8,19 +8,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nikhil.mybestfriend.R
-import com.nikhil.mybestfriend.feature.commons.data.api.interceptor.ConnectivityInterceptorImpl
-import com.nikhil.mybestfriend.feature.commons.data.api.service.CatAPIService
-import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
-import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatBreedDataSourceImpl
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModel
+import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModelFactory
+import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
 import kotlinx.android.synthetic.main.fragment_cat_list.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.kodein.di.generic.instance
 
 
 class CatListFragment : BaseFragment() {
 
+    private val viewModelFactory: CatListViewModelFactory by instance()
     private lateinit var viewmodel : CatListViewModel
     private var catListAdaptor =
         CatListAdaptor(
@@ -37,63 +35,26 @@ class CatListFragment : BaseFragment() {
 
     override fun initFragment() {
         initData()
-        callAPI()
     }
-    /*Todo remove from here add to view model This is done for testing  api call */
-    private fun callAPI() {
-        context?.let {
-            val apiService = CatAPIService(ConnectivityInterceptorImpl(it))
-            val dataSource =
-                CatBreedDataSourceImpl(
-                    apiService = apiService
-                )
-            dataSource.catList.observe(this, Observer {
-                catListAdaptor.updateList(it)
-            })
-            return@let GlobalScope.launch(Dispatchers.Main) {
-                dataSource.fetchCatBreed()
-            }
-        }
 
-
-    }
 
     private fun initData() {
-        viewmodel = ViewModelProviders.of(this).get(CatListViewModel::class.java)
+        viewmodel = ViewModelProviders.of(this, viewModelFactory)
+            .get(CatListViewModel::class.java)
         catRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = catListAdaptor
         }
-        observeViewModel()
+        bindUI()
     }
 
-    private fun observeViewModel() {
-        viewmodel.catList.observe(this, Observer { datalist ->
+    private fun bindUI() = launch {
+        val catList = viewmodel.catList.await()
+        catList.observe(this@CatListFragment, Observer { datalist ->
             datalist?.let {
                 catRecyclerView.visibility = View.VISIBLE
                 catListAdaptor.updateList(it)
             }
         })
-
-        viewmodel.apiError.observe(this, Observer { error ->
-            error?.let {
-                catErrorTextView.visibility = if(it) View.VISIBLE else View.GONE
-            }
-        })
-
-        viewmodel.isLoading.observe(this, Observer { loading ->
-            loading?.let {
-                if(it){
-                    catErrorTextView.visibility = View.GONE
-                    catRecyclerView.visibility = View.GONE
-                    catProgressBar.visibility = View.VISIBLE
-                }else{
-                    catProgressBar.visibility = View.GONE
-                }
-            }
-        })
-
-
     }
-
 }

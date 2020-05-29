@@ -1,13 +1,7 @@
 package com.nikhil.mybestfriend.feature.cat.data.db.entity
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZonedDateTime
 
 @Entity(tableName = "cat")
 data class CatEntity (
@@ -21,4 +15,4 @@ data class CatEntity (
     val metricWeight: String,
     var url: String? = null,
     val rating: Int
-) : Serializable
+)

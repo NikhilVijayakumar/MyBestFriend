@@ -10,12 +10,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.ZonedDateTime
+import org.threeten.bp.ZonedDateTime
 
-class CatBreadRepoImpl(
+class CatListRepoImpl(
     private val catDoa: CatDoa,
     private val catBreedDataSource: CatBreedDataSource
-) : CatBreadRepo {
+) : CatListRepo {
 
     init {
         catBreedDataSource.catList.observeForever {
@@ -48,7 +48,7 @@ class CatBreadRepoImpl(
         catBreedDataSource.fetchCatBreed();
     }
 
-    /*Todo update time implementation */
+
     private fun isFetchNeeded(lastFetchTime: ZonedDateTime): Boolean {
         val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
         return lastFetchTime.isBefore(thirtyMinutesAgo)

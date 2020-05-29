@@ -33,7 +33,7 @@
             app:destination="@id/catDetailFragment" />
         <argument
             android:name="catDetails"
-            app:argType="com.nikhil.mybestfriend.feature.cat.data.db.entity.CatEntity"
+            app:argType="com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>

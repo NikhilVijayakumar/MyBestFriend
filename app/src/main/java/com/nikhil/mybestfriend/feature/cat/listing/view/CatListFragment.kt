@@ -18,7 +18,7 @@ import org.kodein.di.generic.instance
 
 class CatListFragment : BaseFragment() {
 
-    private val factory: CatListViewModelFactory by instance()
+    private val viewModelFactory: CatListViewModelFactory by instance()
     private lateinit var viewmodel : CatListViewModel
     private var catListAdaptor =
         CatListAdaptor(
@@ -39,16 +39,16 @@ class CatListFragment : BaseFragment() {
 
 
     private fun initData() {
-        viewmodel = ViewModelProviders.of(this, factory)
+        viewmodel = ViewModelProviders.of(this, viewModelFactory)
             .get(CatListViewModel::class.java)
         catRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = catListAdaptor
         }
-        bindViewModel()
+        bindUI()
     }
 
-    private fun bindViewModel() = launch {
+    private fun bindUI() = launch {
         val catList = viewmodel.catList.await()
         catList.observe(this@CatListFragment, Observer { datalist ->
             datalist?.let {

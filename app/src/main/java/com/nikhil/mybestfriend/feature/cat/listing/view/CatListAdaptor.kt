@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
 import kotlinx.android.synthetic.main.fragment_cat_detail.*
@@ -38,7 +39,7 @@ class CatListAdaptor(val catList: MutableList<UnitCatEntity>) :
             loadImage(holder,it)
         }
         holder.view.setOnClickListener {
-            Navigation.findNavController(it)
+               Navigation.findNavController(it)
                 .navigate(CatListFragmentDirections.actionCatListFragmentToCatDetailFragment())
         }
     }
@@ -46,9 +47,9 @@ class CatListAdaptor(val catList: MutableList<UnitCatEntity>) :
     private fun loadImage(holder: CatViewHolder,url:String) {
         Glide.with(holder.view.context)
             .load(url) // image url
+            .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.placeholder) // any placeholder to load at start
             .error(R.drawable.error)  // any image in case of error
-            .centerCrop()
             .into(holder.view.catImageView);
 
     }

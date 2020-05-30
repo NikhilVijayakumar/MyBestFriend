@@ -6,95 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".feature.cat.details.view.CatDetailFragment">
 
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/catDetailLayout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
 
-   <TextView
-       android:id="@+id/catName"
-       style="@style/Title"
+
+      <TextView
+          android:id="@+id/catName"
+          style="@style/Title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:text="@string/cat_name"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+
+      <ImageView
+          android:id="@+id/catImageView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:contentDescription="@string/cat_image"
+          android:minWidth="200dp"
+          android:minHeight="200dp"
+          android:src="@drawable/placeholder"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/catName" />
+
+
+      <TextView
+          android:id="@+id/catLifeSpanTitle"
+          style="@style/Text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:text="@string/life_span"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/catImageView" />
+
+      <TextView
+          android:id="@+id/catLifeSpan"
+          style="@style/Text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:text="@string/life_span"
+          app:layout_constraintStart_toEndOf="@+id/catLifeSpanTitle"
+          app:layout_constraintTop_toBottomOf="@+id/catImageView" />
+
+      <TextView
+          android:id="@+id/catOriginTitle"
+          style="@style/Text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="32dp"
+          android:layout_marginTop="16dp"
+          android:text="@string/cat_origin"
+          app:layout_constraintStart_toEndOf="@+id/catLifeSpan"
+          app:layout_constraintTop_toBottomOf="@+id/catImageView" />
+
+      <TextView
+          android:id="@+id/catOrigin"
+          style="@style/Text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:text="@string/cat_origin"
+          app:layout_constraintStart_toEndOf="@+id/catOriginTitle"
+          app:layout_constraintTop_toBottomOf="@+id/catImageView" />
+
+      <TextView
+          android:id="@+id/catDescription"
+          style="@style/Text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:text="@string/life_span"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/catOriginTitle" />
+
+      <RatingBar
+          android:id="@+id/catRatingBar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/catDescription" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+   <ImageView
+       android:id="@+id/loadingView"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       android:text="@string/cat_name"
+       android:layout_marginStart="8dp"
+       android:layout_marginTop="8dp"
+       android:layout_marginEnd="8dp"
+       android:layout_marginBottom="8dp"
+       android:contentDescription="@string/loading"
+       android:minWidth="200dp"
+       android:minHeight="200dp"
+       android:src="@drawable/placeholder"
+       android:visibility="visible"
+       app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent" />
-
-
-   <ImageView
-       android:id="@+id/catImageView"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       android:minWidth="200dp"
-       android:minHeight="200dp"
-       android:src="@mipmap/ic_launcher"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/catName" />
-
-
-   <TextView
-       android:id="@+id/catLifeSpanTitle"
-       style="@style/Text"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginStart="16dp"
-       android:layout_marginTop="16dp"
-       android:text="@string/life_span"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/catImageView" />
-
-   <TextView
-       android:id="@+id/catLifeSpan"
-       style="@style/Text"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginStart="16dp"
-       android:layout_marginTop="16dp"
-       android:text="@string/life_span"
-       app:layout_constraintStart_toEndOf="@+id/catLifeSpanTitle"
-       app:layout_constraintTop_toBottomOf="@+id/catImageView" />
-
-   <TextView
-       android:id="@+id/catOriginTitle"
-       style="@style/Text"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginStart="32dp"
-       android:layout_marginTop="16dp"
-       android:text="@string/cat_origin"
-       app:layout_constraintStart_toEndOf="@+id/catLifeSpan"
-       app:layout_constraintTop_toBottomOf="@+id/catImageView" />
-
-   <TextView
-       android:id="@+id/catOrigin"
-       style="@style/Text"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginStart="16dp"
-       android:layout_marginTop="16dp"
-       android:text="@string/cat_origin"
-       app:layout_constraintStart_toEndOf="@+id/catOriginTitle"
-       app:layout_constraintTop_toBottomOf="@+id/catImageView" />
-
-   <TextView
-       android:id="@+id/catDescription"
-       style="@style/Text"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       android:text="@string/life_span"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/catOriginTitle" />
-
-   <RatingBar
-       android:id="@+id/catRatingBar"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/catDescription" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

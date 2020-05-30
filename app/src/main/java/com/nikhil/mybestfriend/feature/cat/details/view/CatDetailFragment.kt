@@ -40,9 +40,6 @@ class CatDetailFragment : BaseFragment() {
         viewmodel = ViewModelProviders.of(this, factory)
             .get(CatDetailViewModel::class.java)
         viewmodel.addUnitCatEntity(getEntity())
-        Glide.with(this)
-            .load(R.raw.loading_cat)
-            .into(catImageView);
         bindViewModel()
         //callAPI()
     }

@@ -10,6 +10,6 @@ interface UnitCatEntity : Serializable {
     val origin: String
     val weight: String
     var url: String?
-    val rating: Int
+    val rating: Double
 
 }

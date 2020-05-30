@@ -1,11 +1,8 @@
-package com.nikhil.mybestfriend.feature.cat.data.repo
+package com.nikhil.mybestfriend.feature.auth.data.repo
 
 import androidx.lifecycle.LiveData
 import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
-import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 
-interface CatListRepo {
-    val repoStatus: LiveData<RepoStatus>
+interface LoginRepo {
     suspend fun getCatBread(metric:Boolean) : LiveData<out List<UnitCatEntity>>
-
 }

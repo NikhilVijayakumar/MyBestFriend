@@ -30,13 +30,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+    android:id="@+id/catLifeSpanTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="64dp"
+    android:layout_marginTop="16dp"
+    style="@style/Text"
+    android:text="@string/life_span"
+    app:layout_constraintStart_toEndOf="@+id/catImageView"
+    app:layout_constraintTop_toBottomOf="@+id/catName" />
+
+
+    <TextView
         android:id="@+id/catLifeSpan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         style="@style/Text"
         android:text="@string/life_span"
-        app:layout_constraintStart_toEndOf="@+id/catImageView"
+        app:layout_constraintStart_toEndOf="@+id/catLifeSpanTitle"
         app:layout_constraintTop_toBottomOf="@+id/catName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

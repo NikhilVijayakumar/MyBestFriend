@@ -15,6 +15,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/catRecyclerView"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -30,6 +31,7 @@
 
         <TextView
             android:id="@+id/catErrorTextView"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recycle_error"
@@ -38,12 +40,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/catProgressBar"
-            style="?android:attr/progressBarStyle"
+        <ImageView
+            android:id="@+id/loadingCatView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/error"
+            android:minHeight="200dp"
+            android:minWidth="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

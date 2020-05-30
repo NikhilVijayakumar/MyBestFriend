@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModel
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModelFactory
+import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
 import kotlinx.android.synthetic.main.fragment_cat_list.*
 import kotlinx.coroutines.launch
@@ -45,6 +47,9 @@ class CatListFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = catListAdaptor
         }
+        Glide.with(this)
+            .load(R.raw.loading_cat)
+            .into(loadingCatView);
         bindUI()
     }
 
@@ -55,6 +60,26 @@ class CatListFragment : BaseFragment() {
                 catRecyclerView.visibility = View.VISIBLE
                 catListAdaptor.updateList(it)
             }
+        })
+        viewmodel.status.observe(this@CatListFragment,Observer{status ->
+            when(status){
+                RepoStatus.COMPLETED -> {
+                    catRecyclerView.visibility = View.VISIBLE
+                    catErrorTextView.visibility = View.GONE
+                    loadingCatView.visibility = View.GONE
+                }
+                RepoStatus.LOADING -> {
+                    catRecyclerView.visibility = View.GONE
+                    catErrorTextView.visibility = View.GONE
+                    loadingCatView.visibility = View.VISIBLE
+                }
+                RepoStatus.ERROR -> {
+                    catRecyclerView.visibility = View.GONE
+                    catErrorTextView.visibility = View.VISIBLE
+                    loadingCatView.visibility = View.GONE
+                }
+            }
+
         })
     }
 }

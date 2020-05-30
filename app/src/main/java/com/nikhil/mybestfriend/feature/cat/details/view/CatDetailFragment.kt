@@ -40,6 +40,9 @@ class CatDetailFragment : BaseFragment() {
         viewmodel = ViewModelProviders.of(this, factory)
             .get(CatDetailViewModel::class.java)
         viewmodel.addUnitCatEntity(getEntity())
+        Glide.with(this)
+            .load(R.raw.loading_cat)
+            .into(catImageView);
         bindViewModel()
         //callAPI()
     }
@@ -55,6 +58,7 @@ class CatDetailFragment : BaseFragment() {
             catLifeSpan.text = data.lifeSpan
             catOrigin.text = data.origin
             catDescription.text = data.description
+            catRatingBar.rating = data.rating.toFloat()
             data.url?.let {
                 loadImage(it)
             }
@@ -88,9 +92,9 @@ class CatDetailFragment : BaseFragment() {
     }*/
 
     private fun loadImage(url:String) {
-             Glide.with(this)
-                 .load(url) // image url
-                 .placeholder(R.drawable.placeholder) // any placeholder to load at start
+                Glide.with(this)
+                 .load(url) // image ur
+                 .placeholder(R.drawable.placeholder)
                  .error(R.drawable.error)  // any image in case of error
                  .fitCenter()
                 .into(catImageView);

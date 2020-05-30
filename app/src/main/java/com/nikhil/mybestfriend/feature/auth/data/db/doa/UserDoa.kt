@@ -10,8 +10,11 @@ import com.nikhil.mybestfriend.feature.auth.data.db.entity.UserEntity
 @Dao
 interface UserDoa {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(userEntity: UserEntity)
+    fun insert(userEntity: UserEntity)
 
-    @Query("select * from user  where email = :email AND  password = :password")
-    fun getUser(email:String,password:String): LiveData<UserEntity>
+  /*  @Query("UPDATE user SET password=:password WHERE email = :email")
+    fun updatePassword(email:String,password: String)*/
+
+    @Query("select * from user  where email = :email")
+    fun getUser(email:String): LiveData<UserEntity>
 }

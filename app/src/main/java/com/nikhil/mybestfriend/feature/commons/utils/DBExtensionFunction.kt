@@ -3,34 +3,34 @@ package com.nikhil.mybestfriend.feature.commons.utils
 import com.nikhil.mybestfriend.feature.cat.data.api.response.CatBreed
 import com.nikhil.mybestfriend.feature.cat.data.db.entity.CatEntity
 
-fun catRating(breed: CatBreed): Int {
-    var catCommons: Int = catCommonFeatures(breed)
-    var catCore: Int = catCoreFeatures(breed)
-    var catproblems: Int = catIssues(breed)
+fun catRating(breed: CatBreed): Double {
+    var catCommons: Double = catCommonFeatures(breed)
+    var catCore: Double = catCoreFeatures(breed)
+    var catproblems: Double = catIssues(breed)
     var rating = (catCommons + catCore) / 2
     rating -= (catproblems) / 3
     return rating
 }
 
-fun catIssues(breed: CatBreed): Int {
+fun catIssues(breed: CatBreed): Double {
     return (breed.healthIssues +
             breed.hypoallergenic +
             breed.suppressedTail +
             breed.shortLegs
-            ) / 4
+            ) / 4.0
 }
 
-fun catCoreFeatures(breed: CatBreed): Int {
+fun catCoreFeatures(breed: CatBreed): Double {
     return (breed.grooming +
             breed.hairless +
             breed.sheddingLevel +
             breed.intelligence +
             breed.socialNeeds
-            ) / 5
+            ) / 5.0
 }
 
 
-fun catCommonFeatures(breed: CatBreed): Int {
+fun catCommonFeatures(breed: CatBreed): Double {
     return (breed.adaptability +
             breed.affectionLevel +
             breed.childFriendly +
@@ -43,7 +43,7 @@ fun catCommonFeatures(breed: CatBreed): Int {
             breed.natural +
             breed.rare +
             breed.rex
-            ) / 12
+            ) / 12.0
 }
 
 fun CatBreed.toCatEntity(): CatEntity {

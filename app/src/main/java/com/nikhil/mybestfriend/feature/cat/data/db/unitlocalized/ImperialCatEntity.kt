@@ -17,7 +17,7 @@ data class ImperialCatEntity(
     @ColumnInfo(name = "url")
     override var url: String?=null,
     @ColumnInfo(name = "rating")
-    override val rating: Int,
+    override val rating: Double,
     @ColumnInfo(name = "imperialWeight")
     override val weight: String
 ) : UnitCatEntity {

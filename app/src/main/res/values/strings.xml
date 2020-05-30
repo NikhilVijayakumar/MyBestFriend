@@ -9,6 +9,6 @@
     <string name="recycle_error">Error while loading data</string>
     <string name="cat_name">Cat Name</string>
     <string name="cat_deescription">Cat Description</string>
-    <string name="cat_origin">Cat origin</string>
-    <string name="life_span">Life span</string>
+    <string name="cat_origin">Cat origin : </string>
+    <string name="life_span">Life span : </string>
 </resources>

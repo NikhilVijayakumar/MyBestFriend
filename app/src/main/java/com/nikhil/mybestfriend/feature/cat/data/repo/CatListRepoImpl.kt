@@ -1,11 +1,13 @@
 package com.nikhil.mybestfriend.feature.cat.data.repo
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatBreedDataSource
 import com.nikhil.mybestfriend.feature.cat.data.api.response.CatBreed
 import com.nikhil.mybestfriend.feature.cat.data.db.doa.CatDoa
 import com.nikhil.mybestfriend.feature.cat.data.db.entity.CatEntity
 import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 import com.nikhil.mybestfriend.feature.commons.utils.toCatEntityList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -18,9 +20,16 @@ class CatListRepoImpl(
     private val catBreedDataSource: CatBreedDataSource
 ) : CatListRepo {
 
+    private val _repoStatus = MutableLiveData<RepoStatus>()
+    override val repoStatus: LiveData<RepoStatus>
+        get() =_repoStatus
+
     init {
         catBreedDataSource.catList.observeForever {
-            saveCatBreed(it)
+             saveCatBreed(it)
+        }
+        catBreedDataSource.repoStatus.observeForever {
+            _repoStatus.postValue(it)
         }
     }
 
@@ -32,10 +41,18 @@ class CatListRepoImpl(
     }
 
     override suspend fun getCatBread(metric: Boolean): LiveData<out List<UnitCatEntity>> {
+        _repoStatus.postValue(RepoStatus.LOADING)
         return withContext(Dispatchers.IO) {
             initCatBreedApi()
-            return@withContext if (metric) catDoa.getCatMetric()
-            else catDoa.getCatImperial()
+            return@withContext if (metric) {
+                val data = catDoa.getCatMetric()
+                _repoStatus.postValue(RepoStatus.COMPLETED)
+                data
+            } else{
+                val data = catDoa.getCatImperial()
+                _repoStatus.postValue(RepoStatus.COMPLETED)
+               data
+            }
         }
 
     }

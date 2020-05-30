@@ -1,13 +1,17 @@
 package com.nikhil.mybestfriend.feature.commons.application
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatBreedDataSource
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatBreedDataSourceImpl
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatDetailDataSource
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatDetailDataSourceImpl
+import com.nikhil.mybestfriend.feature.cat.data.repo.CatDetailRepo
+import com.nikhil.mybestfriend.feature.cat.data.repo.CatDetailRepoImpl
 import com.nikhil.mybestfriend.feature.cat.data.repo.CatListRepo
 import com.nikhil.mybestfriend.feature.cat.data.repo.CatListRepoImpl
+import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModelFactory
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModelFactory
 import com.nikhil.mybestfriend.feature.commons.data.api.interceptor.ConnectivityInterceptor
 import com.nikhil.mybestfriend.feature.commons.data.api.interceptor.ConnectivityInterceptorImpl
@@ -34,12 +38,15 @@ class FriendApplication : Application(), KodeinAware {
         bind<CatBreedDataSource>() with singleton { CatBreedDataSourceImpl(instance()) }
         bind<CatDetailDataSource>() with singleton { CatDetailDataSourceImpl(instance()) }
         bind<CatListRepo>() with singleton { CatListRepoImpl(instance(),instance()) }
-         bind() from provider { CatListViewModelFactory(instance()) }
+        bind<CatDetailRepo>() with singleton { CatDetailRepoImpl(instance(), instance()) }
+        bind() from provider { CatListViewModelFactory(instance()) }
+        bind() from provider { CatDetailViewModelFactory(instance()) }
     }
 
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
+        Stetho.initializeWithDefaults(this);
         //PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
 }

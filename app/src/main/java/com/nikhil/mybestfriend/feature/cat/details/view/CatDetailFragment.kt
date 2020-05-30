@@ -8,19 +8,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.nikhil.mybestfriend.R
+import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatDetailDataSourceImpl
+import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.MetricCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModel
+import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModelFactory
 import com.nikhil.mybestfriend.feature.commons.data.api.interceptor.ConnectivityInterceptorImpl
 import com.nikhil.mybestfriend.feature.commons.data.api.service.CatAPIService
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
-import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatDetailDataSourceImpl
-import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModel
 import kotlinx.android.synthetic.main.fragment_cat_detail.*
+import kotlinx.android.synthetic.main.fragment_cat_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.kodein.di.generic.instance
 
 
 class CatDetailFragment : BaseFragment() {
 
+    private val factory: CatDetailViewModelFactory by instance()
     private lateinit var viewmodel : CatDetailViewModel
 
     override fun onCreateView(
@@ -31,12 +37,33 @@ class CatDetailFragment : BaseFragment() {
     }
 
     override fun initFragment() {
-        viewmodel = ViewModelProviders.of(this).get(CatDetailViewModel::class.java)
-        observeViewModel()
-        callAPI()
+        viewmodel = ViewModelProviders.of(this, factory)
+            .get(CatDetailViewModel::class.java)
+        viewmodel.addUnitCatEntity(getEntity())
+        bindViewModel()
+        //callAPI()
     }
 
-    /*Todo remove from here add to view model This is done for testing  api call */
+    private fun getEntity(): UnitCatEntity {
+       return MetricCatEntity()
+    }
+
+    private fun bindViewModel() = launch {
+        val unitCatEntity = viewmodel.unitCatEntity.await()
+        unitCatEntity?.observe(this@CatDetailFragment, Observer { data ->
+            catName.text = data.name
+            catLifeSpan.text = data.lifeSpan
+            catOrigin.text = data.origin
+            catDescription.text = data.description
+            data.url?.let {
+                loadImage(it)
+            }
+
+        })
+    }
+
+
+   /* *//*Todo remove from here add to view model This is done for testing  api call *//*
     private fun callAPI() {
         context?.let {
             val apiService = CatAPIService(ConnectivityInterceptorImpl(it))
@@ -58,30 +85,28 @@ class CatDetailFragment : BaseFragment() {
              dataSource.fetchCatBreed(breedIds="abys")
             }
         }
-
-
-    }
+    }*/
 
     private fun loadImage(url:String) {
-        Glide.with(this)
-            .load(url) // image url
-            .placeholder(R.drawable.placeholder) // any placeholder to load at start
-            .error(R.drawable.error)  // any image in case of error
-            .fitCenter()
-           .into(catImageView);
+             Glide.with(this)
+                 .load(url) // image url
+                 .placeholder(R.drawable.placeholder) // any placeholder to load at start
+                 .error(R.drawable.error)  // any image in case of error
+                 .fitCenter()
+                .into(catImageView);
 
     }
 
     private fun observeViewModel() {
 
-        viewmodel.catDetails.observe(this, Observer { data ->
-            data?.let {
-                catName.text = it.breeds.get(0).name
-                catLifeSpan.text = it.breeds.get(0).lifeSpan
-                catOrigin.text = it.breeds.get(0).origin
-                catDescription.text = it.breeds.get(0).description
-            }
-        })
+        /*     viewmodel.catDetails.observe(this, Observer { data ->
+                 data?.let {
+                     catName.text = it.breeds.get(0).name
+                     catLifeSpan.text = it.breeds.get(0).lifeSpan
+                     catOrigin.text = it.breeds.get(0).origin
+                     catDescription.text = it.breeds.get(0).description
+                 }
+             })*/
     }
 
 

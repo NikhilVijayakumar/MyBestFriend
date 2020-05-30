@@ -19,4 +19,6 @@ data class MetricCatEntity (
     override val rating: Int,
     @ColumnInfo(name = "metricWeight")
     override val weight: String
-) : UnitCatEntity
+) : UnitCatEntity{
+    constructor() : this("abys","null","null","null","null",null,0,"null")
+}

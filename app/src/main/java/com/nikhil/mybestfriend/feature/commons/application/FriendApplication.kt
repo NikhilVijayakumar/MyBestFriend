@@ -3,6 +3,12 @@ package com.nikhil.mybestfriend.feature.commons.application
 import android.app.Application
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.nikhil.mybestfriend.feature.auth.data.repo.LoginRepo
+import com.nikhil.mybestfriend.feature.auth.data.repo.LoginRepoImpl
+import com.nikhil.mybestfriend.feature.auth.data.repo.RegisterRepo
+import com.nikhil.mybestfriend.feature.auth.data.repo.RegisterRepoImpl
+import com.nikhil.mybestfriend.feature.auth.login.viewmodel.LoginViewModelFactory
+import com.nikhil.mybestfriend.feature.auth.register.viewmodel.RegisterViewModelFactory
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatBreedDataSource
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatBreedDataSourceImpl
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatDetailDataSource
@@ -31,8 +37,8 @@ class FriendApplication : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@FriendApplication))
         bind() from singleton { FriendDatabase(instance()) }
+        /*CatListing and detils*/
         bind() from singleton { instance<FriendDatabase>().catDao() }
-        bind() from singleton { instance<FriendDatabase>().userDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { CatAPIService(instance()) }
         bind<CatBreedDataSource>() with singleton { CatBreedDataSourceImpl(instance()) }
@@ -41,6 +47,12 @@ class FriendApplication : Application(), KodeinAware {
         bind<CatDetailRepo>() with singleton { CatDetailRepoImpl(instance(), instance()) }
         bind() from provider { CatListViewModelFactory(instance()) }
         bind() from provider { CatDetailViewModelFactory(instance()) }
+        /*Login and register*/
+        bind() from singleton { instance<FriendDatabase>().userDao() }
+        bind<LoginRepo>() with singleton { LoginRepoImpl(instance()) }
+        bind<RegisterRepo>() with singleton { RegisterRepoImpl(instance()) }
+        bind() from provider { LoginViewModelFactory(instance()) }
+        bind() from provider { RegisterViewModelFactory(instance()) }
     }
 
     override fun onCreate() {

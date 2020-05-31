@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.nikhil.mybestfriend.feature.auth.data.db.entity.UserEntity
 import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 
-interface LoginRepo {
+interface RegisterRepo {
     val repoStatus: LiveData<RepoStatus>
-    suspend fun login(userEntity: UserEntity)
+    suspend fun register(userEntity: UserEntity)
 }

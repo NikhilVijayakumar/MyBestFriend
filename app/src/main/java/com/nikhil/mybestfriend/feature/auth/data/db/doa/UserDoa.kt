@@ -15,6 +15,6 @@ interface UserDoa {
   /*  @Query("UPDATE user SET password=:password WHERE email = :email")
     fun updatePassword(email:String,password: String)*/
 
-    @Query("select * from user  where email = :email")
+    @Query("select * from user where email like :email")
     fun getUser(email:String): LiveData<UserEntity>
 }

@@ -94,6 +94,8 @@ class CatListFragment : BaseFragment(), OnCatItemClickListener {
         startActivity(intent)
     }
 
+
+
     companion object {
         const val KEY: String = "CatListFragment";
     }

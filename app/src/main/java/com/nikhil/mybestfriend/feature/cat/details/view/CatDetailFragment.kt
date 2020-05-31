@@ -1,21 +1,15 @@
 package com.nikhil.mybestfriend.feature.cat.details.view
 
-import android.R.color
+import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
-import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
@@ -32,7 +26,9 @@ import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import com.nikhil.mybestfriend.feature.cat.data.view.CatPalette
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModel
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModelFactory
+import com.nikhil.mybestfriend.feature.cat.listing.view.CatListActivity
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
+import com.nikhil.mybestfriend.feature.preferences.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_cat_detail.*
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
@@ -48,6 +44,7 @@ class CatDetailFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         dataBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_cat_detail,container,false)
         return dataBinding.root
     }
@@ -131,6 +128,22 @@ class CatDetailFragment : BaseFragment() {
     private fun setRatingBarColor(textColor: Int) {
         val stars = catRatingBar.progressDrawable as LayerDrawable
         stars.getDrawable(2).setColorFilter(BlendModeColorFilterCompat.createBlendModeColorFilterCompat(textColor, BlendModeCompat.SRC_ATOP))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_settings,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_settings -> {
+                val intent = Intent(context, SettingsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return false
     }
 
 }

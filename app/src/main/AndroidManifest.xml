@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nikhil.mybestfriend">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".feature.commons.application.FriendApplication"
@@ -13,10 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name="com.nikhil.mybestfriend.feature.auth.login.view.LoginActivity"></activity>
-        <activity android:name="com.nikhil.mybestfriend.feature.cat.listing.view.CatListActivity"></activity>
-        <activity android:name="com.nikhil.mybestfriend.feature.cat.details.view.CatDetailsActivity"></activity>
+        <activity
+            android:name=".feature.preferences.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".feature.auth.login.view.LoginActivity" />
+        <activity android:name=".feature.cat.listing.view.CatListActivity" />
+        <activity android:name=".feature.cat.details.view.CatDetailsActivity" />
         <activity android:name=".feature.splash.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

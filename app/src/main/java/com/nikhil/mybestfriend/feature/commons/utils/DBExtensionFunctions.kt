@@ -7,8 +7,8 @@ fun catRating(breed: CatBreed): Double {
     var catCommons: Double = catCommonFeatures(breed)
     var catCore: Double = catCoreFeatures(breed)
     var catproblems: Double = catIssues(breed)
-    var rating = (catCommons + catCore) / 2
-    rating -= (catproblems) / 3
+    var rating = (catCommons + catCore) / 1.5
+    rating -= (catproblems)
     return rating
 }
 
@@ -17,7 +17,7 @@ fun catIssues(breed: CatBreed): Double {
             breed.hypoallergenic +
             breed.suppressedTail +
             breed.shortLegs
-            ) / 4.0
+            ) / 8.0
 }
 
 fun catCoreFeatures(breed: CatBreed): Double {

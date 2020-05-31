@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nikhil.mybestfriend.R
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import kotlinx.android.synthetic.main.item_cat.view.*
 
 

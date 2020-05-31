@@ -1,4 +1,4 @@
-package com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized
+package com.nikhil.mybestfriend.feature.cat.data.db.localized
 
 import androidx.room.ColumnInfo
 
@@ -17,7 +17,7 @@ data class ImperialCatEntity(
     @ColumnInfo(name = "url")
     override var url: String?=null,
     @ColumnInfo(name = "rating")
-    override val rating: Double,
+    override val rating: Float,
     @ColumnInfo(name = "imperialWeight")
     override val weight: String
 ) : UnitCatEntity {

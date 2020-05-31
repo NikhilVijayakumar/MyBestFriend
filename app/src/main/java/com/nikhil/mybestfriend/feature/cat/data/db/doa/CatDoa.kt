@@ -3,8 +3,8 @@ package com.nikhil.mybestfriend.feature.cat.data.db.doa
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.nikhil.mybestfriend.feature.cat.data.db.entity.CatEntity
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.ImperialCatEntity
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.MetricCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.ImperialCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.MetricCatEntity
 
 @Dao
 interface CatDoa {

@@ -14,5 +14,5 @@ data class CatEntity (
     val imperialWeight: String,
     val metricWeight: String,
     var url: String? = null,
-    val rating: Double
+    val rating: Float
 )

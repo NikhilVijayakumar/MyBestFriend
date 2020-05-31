@@ -2,7 +2,7 @@ package com.nikhil.mybestfriend.feature.cat.details.view
 
 import android.os.Bundle
 import com.nikhil.mybestfriend.R
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import com.nikhil.mybestfriend.feature.cat.listing.view.CatListFragment
 import com.nikhil.mybestfriend.feature.commons.view.BaseActivity
 

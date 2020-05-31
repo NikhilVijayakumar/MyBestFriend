@@ -6,7 +6,7 @@ import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatBreedDataSourc
 import com.nikhil.mybestfriend.feature.cat.data.api.response.CatBreed
 import com.nikhil.mybestfriend.feature.cat.data.db.doa.CatDoa
 import com.nikhil.mybestfriend.feature.cat.data.db.entity.CatEntity
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 import com.nikhil.mybestfriend.feature.commons.utils.toCatEntityList
 import kotlinx.coroutines.Dispatchers

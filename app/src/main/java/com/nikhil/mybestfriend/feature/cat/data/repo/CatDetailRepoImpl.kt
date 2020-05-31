@@ -1,11 +1,9 @@
 package com.nikhil.mybestfriend.feature.cat.data.repo
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.nikhil.mybestfriend.feature.cat.data.api.datasource.CatDetailDataSource
-import com.nikhil.mybestfriend.feature.cat.data.api.response.CatDetails
 import com.nikhil.mybestfriend.feature.cat.data.db.doa.CatDoa
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

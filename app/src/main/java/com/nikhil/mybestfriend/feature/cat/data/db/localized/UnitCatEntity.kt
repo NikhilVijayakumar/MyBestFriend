@@ -1,4 +1,4 @@
-package com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized
+package com.nikhil.mybestfriend.feature.cat.data.db.localized
 
 import java.io.Serializable
 
@@ -10,6 +10,6 @@ interface UnitCatEntity : Serializable {
     val origin: String
     val weight: String
     var url: String?
-    val rating: Double
+    val rating: Float
 
 }

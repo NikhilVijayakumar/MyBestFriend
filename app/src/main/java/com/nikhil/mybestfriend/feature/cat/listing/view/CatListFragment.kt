@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.nikhil.mybestfriend.R
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import com.nikhil.mybestfriend.feature.cat.details.view.CatDetailsActivity
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModel
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModelFactory

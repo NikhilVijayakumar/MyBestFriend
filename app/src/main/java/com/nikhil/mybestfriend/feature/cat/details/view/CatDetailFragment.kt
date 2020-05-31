@@ -1,14 +1,35 @@
 package com.nikhil.mybestfriend.feature.cat.details.view
 
+import android.R.color
+import android.graphics.Bitmap
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
+import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.nikhil.mybestfriend.R
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.databinding.FragmentCatDetailBinding
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.view.CatPalette
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModel
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModelFactory
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
@@ -21,12 +42,14 @@ class CatDetailFragment : BaseFragment() {
 
     private val factory: CatDetailViewModelFactory by instance()
     private lateinit var viewmodel : CatDetailViewModel
+    private lateinit var dataBinding: FragmentCatDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_cat_detail, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_cat_detail,container,false)
+        return dataBinding.root
     }
 
     override fun initFragment() {
@@ -50,15 +73,8 @@ class CatDetailFragment : BaseFragment() {
     private fun bindViewModel() = launch {
         val unitCatEntity = viewmodel.unitCatEntity.await()
         unitCatEntity?.observe(this@CatDetailFragment, Observer { data ->
-            catName.text = data.name
-            catLifeSpan.text = data.lifeSpan
-            catOrigin.text = data.origin
-            catDescription.text = data.description
-            catRatingBar.rating = data.rating.toFloat()
-            data.url?.let {
-                loadImage(it)
-            }
-
+          dataBinding.entity = data
+            data.url?.let(this@CatDetailFragment::loadImage)
         })
     }
 
@@ -69,7 +85,52 @@ class CatDetailFragment : BaseFragment() {
                  .error(R.drawable.error)  // any image in case of error
                  .fitCenter()
                 .into(catImageView);
+        setPalette(url)
 
+    }
+
+    private fun setPalette(url: String) {
+        Glide.with(this)
+            .asBitmap()
+            .load(url)
+            .into(object : CustomTarget<Bitmap>() {
+
+                override fun onLoadCleared(placeholder: Drawable?) {
+                }
+
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    Palette.from(resource)
+                        .generate { palette ->
+                            context?.let {
+                                val backgroundColor = palette?.vibrantSwatch?.rgb?: ContextCompat.getColor(it, R.color.defaultBackgroundColor)
+                                val textColor = palette?.vibrantSwatch?.bodyTextColor?: ContextCompat.getColor(it, R.color.defaultTextColor)
+                                val titleColor = palette?.vibrantSwatch?.titleTextColor?: ContextCompat.getColor(it, R.color.defaultTitleColor)
+                                val catPalette = CatPalette(backgroundColor,titleColor,textColor)
+                                dataBinding.palette = catPalette
+                                setRatingBarColor(textColor)
+                                toolbarColor(backgroundColor,titleColor)
+                            }
+
+                        }
+                }
+            })
+    }
+
+    private fun toolbarColor(backgroundColor: Int, titleColor: Int) {
+        activity?.let {
+            it.actionBar?.let {actionBar ->
+                actionBar .setBackgroundDrawable(ColorDrawable(backgroundColor))
+              val text: Spannable = SpannableString(actionBar.title)
+                text.setSpan( ForegroundColorSpan(titleColor), 0,text.toString().length , Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                actionBar.title = text.toString()
+            }
+        }
+
+    }
+
+    private fun setRatingBarColor(textColor: Int) {
+        val stars = catRatingBar.progressDrawable as LayerDrawable
+        stars.getDrawable(2).setColorFilter(BlendModeColorFilterCompat.createBlendModeColorFilterCompat(textColor, BlendModeCompat.SRC_ATOP))
     }
 
 }

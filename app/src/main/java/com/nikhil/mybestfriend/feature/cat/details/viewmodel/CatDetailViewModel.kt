@@ -1,6 +1,6 @@
 package com.nikhil.mybestfriend.feature.cat.details.viewmodel
 
-import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import com.nikhil.mybestfriend.feature.cat.data.repo.CatDetailRepo
 import com.nikhil.mybestfriend.feature.commons.enums.UnitSystem
 import com.nikhil.mybestfriend.feature.commons.utils.lazyDeferred

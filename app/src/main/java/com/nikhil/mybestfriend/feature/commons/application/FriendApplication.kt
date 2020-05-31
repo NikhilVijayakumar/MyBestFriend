@@ -23,6 +23,7 @@ import com.nikhil.mybestfriend.feature.commons.data.api.interceptor.Connectivity
 import com.nikhil.mybestfriend.feature.commons.data.api.interceptor.ConnectivityInterceptorImpl
 import com.nikhil.mybestfriend.feature.commons.data.api.service.CatAPIService
 import com.nikhil.mybestfriend.feature.commons.data.db.FriendDatabase
+import com.nikhil.mybestfriend.feature.preferences.data.PreferenceHelper
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -37,6 +38,7 @@ class FriendApplication : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@FriendApplication))
         bind() from singleton { FriendDatabase(instance()) }
+        bind() from singleton { PreferenceHelper(instance()) }
         /*CatListing and detils*/
         bind() from singleton { instance<FriendDatabase>().catDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
@@ -45,8 +47,8 @@ class FriendApplication : Application(), KodeinAware {
         bind<CatDetailDataSource>() with singleton { CatDetailDataSourceImpl(instance()) }
         bind<CatListRepo>() with singleton { CatListRepoImpl(instance(),instance()) }
         bind<CatDetailRepo>() with singleton { CatDetailRepoImpl(instance(), instance()) }
-        bind() from provider { CatListViewModelFactory(instance()) }
-        bind() from provider { CatDetailViewModelFactory(instance()) }
+        bind() from provider { CatListViewModelFactory(instance(),instance()) }
+        bind() from provider { CatDetailViewModelFactory(instance(),instance()) }
         /*Login and register*/
         bind() from singleton { instance<FriendDatabase>().userDao() }
         bind<LoginRepo>() with singleton { LoginRepoImpl(instance()) }

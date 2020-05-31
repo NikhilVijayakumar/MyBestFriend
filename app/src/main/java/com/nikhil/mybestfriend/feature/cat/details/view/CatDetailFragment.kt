@@ -26,9 +26,8 @@ import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import com.nikhil.mybestfriend.feature.cat.data.view.CatPalette
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModel
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModelFactory
-import com.nikhil.mybestfriend.feature.cat.listing.view.CatListActivity
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
-import com.nikhil.mybestfriend.feature.preferences.SettingsActivity
+import com.nikhil.mybestfriend.feature.preferences.view.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_cat_detail.*
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance

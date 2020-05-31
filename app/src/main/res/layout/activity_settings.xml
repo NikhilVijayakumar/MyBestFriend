@@ -6,7 +6,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/catListFragment"
-        android:name="com.nikhil.mybestfriend.feature.preferences.SettingsFragment"
+        android:name="com.nikhil.mybestfriend.feature.preferences.view.SettingsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

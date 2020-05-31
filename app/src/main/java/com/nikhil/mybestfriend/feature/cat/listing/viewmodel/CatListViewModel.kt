@@ -6,10 +6,18 @@ import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 import com.nikhil.mybestfriend.feature.commons.enums.UnitSystem
 import com.nikhil.mybestfriend.feature.commons.utils.lazyDeferred
 import com.nikhil.mybestfriend.feature.commons.viewmodel.BaseViewModel
+import com.nikhil.mybestfriend.feature.preferences.data.PreferenceHelper
 
-class CatListViewModel(val catListRepo: CatListRepo) : BaseViewModel() {
+class CatListViewModel(val catListRepo: CatListRepo,
+                       val preferenceHelper: PreferenceHelper) : BaseViewModel() {
 
-    private val unitSystem = UnitSystem.METRIC
+    private val unitSystem
+        get() = if(preferenceHelper.isMetric()){
+            UnitSystem.METRIC
+        }else{
+            UnitSystem.IMPERIAL
+        }
+
 
     val status: LiveData<RepoStatus> = catListRepo.repoStatus
 

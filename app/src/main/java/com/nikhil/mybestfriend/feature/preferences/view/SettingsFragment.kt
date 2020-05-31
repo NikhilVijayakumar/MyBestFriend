@@ -1,4 +1,4 @@
-package com.nikhil.mybestfriend.feature.preferences
+package com.nikhil.mybestfriend.feature.preferences.view
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

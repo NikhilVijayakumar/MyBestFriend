@@ -5,11 +5,19 @@ import com.nikhil.mybestfriend.feature.cat.data.repo.CatDetailRepo
 import com.nikhil.mybestfriend.feature.commons.enums.UnitSystem
 import com.nikhil.mybestfriend.feature.commons.utils.lazyDeferred
 import com.nikhil.mybestfriend.feature.commons.viewmodel.BaseViewModel
+import com.nikhil.mybestfriend.feature.preferences.data.PreferenceHelper
 
 
-class CatDetailViewModel(val catDetailRepo: CatDetailRepo) : BaseViewModel() {
+class CatDetailViewModel(val catDetailRepo: CatDetailRepo,
+                         val preferenceHelper: PreferenceHelper) : BaseViewModel() {
     var data: UnitCatEntity? = null
-    private val unitSystem = UnitSystem.METRIC
+    private val unitSystem
+        get() = if(preferenceHelper.isMetric()){
+            UnitSystem.METRIC
+        }else{
+            UnitSystem.IMPERIAL
+        }
+
     val isMetricUnit: Boolean
         get() = unitSystem == UnitSystem.METRIC
 

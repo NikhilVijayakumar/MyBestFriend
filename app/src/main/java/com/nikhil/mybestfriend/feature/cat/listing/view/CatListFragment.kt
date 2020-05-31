@@ -1,5 +1,6 @@
 package com.nikhil.mybestfriend.feature.cat.listing.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.nikhil.mybestfriend.R
+import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
+import com.nikhil.mybestfriend.feature.cat.details.view.CatDetailsActivity
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModel
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModelFactory
 import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
@@ -18,13 +21,13 @@ import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 
-class CatListFragment : BaseFragment() {
+class CatListFragment : BaseFragment(), OnCatItemClickListener {
 
     private val factory: CatListViewModelFactory by instance()
     private lateinit var viewmodel : CatListViewModel
     private var catListAdaptor =
         CatListAdaptor(
-            arrayListOf()
+            arrayListOf(), this
         )
 
     override fun onCreateView(
@@ -82,4 +85,18 @@ class CatListFragment : BaseFragment() {
 
         })
     }
+
+    override fun onCatItemClicked(data: UnitCatEntity) {
+        val intent = Intent(context, CatDetailsActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable(KEY, data)
+        intent.putExtra(KEY, bundle)
+        startActivity(intent)
+    }
+
+    companion object {
+        const val KEY: String = "CatListFragment";
+    }
 }
+
+

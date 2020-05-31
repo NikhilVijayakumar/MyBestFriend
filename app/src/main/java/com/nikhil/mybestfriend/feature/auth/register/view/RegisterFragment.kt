@@ -109,7 +109,7 @@ class RegisterFragment : BaseFragment() {
 
     private fun gotoLogin() {
         val direction: NavDirections =
-            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment4()
         Navigation.findNavController(registerButton).navigate(direction)
 
     }

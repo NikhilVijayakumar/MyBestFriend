@@ -1,21 +1,21 @@
 package com.nikhil.mybestfriend.feature.cat.listing.view
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.cat.data.db.unitlocalized.UnitCatEntity
-import kotlinx.android.synthetic.main.fragment_cat_detail.*
 import kotlinx.android.synthetic.main.item_cat.view.*
 
 
-class CatListAdaptor(val catList: MutableList<UnitCatEntity>) :
+class CatListAdaptor(val catList: MutableList<UnitCatEntity>,
+                     val itemClickListener: OnCatItemClickListener) :
     RecyclerView.Adapter<CatListAdaptor.CatViewHolder>() {
+
+
 
     fun updateList(list: List<UnitCatEntity>) {
         catList.clear();
@@ -39,10 +39,10 @@ class CatListAdaptor(val catList: MutableList<UnitCatEntity>) :
             loadImage(holder,it)
         }
         holder.view.setOnClickListener {
-               Navigation.findNavController(it)
-                .navigate(CatListFragmentDirections.actionCatListFragmentToCatDetailFragment())
+           itemClickListener.onCatItemClicked(catList.get(position))
         }
     }
+
 
     private fun loadImage(holder: CatViewHolder,url:String) {
         Glide.with(holder.view.context)

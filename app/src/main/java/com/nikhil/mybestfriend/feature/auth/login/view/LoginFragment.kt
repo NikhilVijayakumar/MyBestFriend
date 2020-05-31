@@ -1,5 +1,6 @@
 package com.nikhil.mybestfriend.feature.auth.login.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.auth.data.db.entity.UserEntity
 import com.nikhil.mybestfriend.feature.auth.login.viewmodel.LoginViewModel
 import com.nikhil.mybestfriend.feature.auth.login.viewmodel.LoginViewModelFactory
+import com.nikhil.mybestfriend.feature.cat.listing.view.CatListActivity
 import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 import com.nikhil.mybestfriend.feature.commons.utils.data
 import com.nikhil.mybestfriend.feature.commons.utils.isValidEmail
@@ -28,6 +30,7 @@ class LoginFragment : BaseFragment() {
 
     private val factory: LoginViewModelFactory by instance()
     private lateinit var viewmodel: LoginViewModel
+    private var userList:List<UserEntity>? =null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,6 +83,11 @@ class LoginFragment : BaseFragment() {
                 }
             }
         })
+        viewmodel.data.observe(this@LoginFragment,Observer{
+            it?.let {
+                userList = it
+            }
+        })
     }
 
     private fun showSnackBar(message: String) {
@@ -109,19 +117,19 @@ class LoginFragment : BaseFragment() {
             UserEntity(
                 emailEditText.data,
                 passwordEditText.data
-            )
+            ),userList
         )
     }
 
 
 
     private fun gotoHome() {
-        val direction:NavDirections = LoginFragmentDirections.actionLoginFragmentToCatListFragment()
-        Navigation.findNavController(loginbutton).navigate(direction)
+        val intent = Intent(context, CatListActivity::class.java)
+        startActivity(intent)
+       activity?.finish()
     }
 
     private fun gotoRegister() {
-        val direction:NavDirections = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-        Navigation.findNavController(registerButton).navigate(direction)
+        Navigation.findNavController(registerButton).navigate(LoginFragmentDirections.actionLoginFragment4ToRegisterFragment())
     }
 }

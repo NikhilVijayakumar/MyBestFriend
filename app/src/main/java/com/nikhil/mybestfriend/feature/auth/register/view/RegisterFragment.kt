@@ -12,22 +12,20 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.auth.data.db.entity.UserEntity
+import com.nikhil.mybestfriend.feature.auth.login.viewmodel.LoginViewModelFactory
 import com.nikhil.mybestfriend.feature.auth.register.viewmodel.RegisterViewModel
 import com.nikhil.mybestfriend.feature.auth.register.viewmodel.RegisterViewModelFactory
 import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
-import com.nikhil.mybestfriend.feature.commons.utils.data
-import com.nikhil.mybestfriend.feature.commons.utils.isValidEmail
-import com.nikhil.mybestfriend.feature.commons.utils.isValidPassword
+import com.nikhil.mybestfriend.feature.commons.utils.*
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
 import kotlinx.android.synthetic.main.fragment_register.*
-
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 
 class RegisterFragment : BaseFragment() {
 
-    private val factory: RegisterViewModelFactory by instance()
+    private val factory: RegisterViewModelFactory by instance<RegisterViewModelFactory>()
     private lateinit var viewmodel: RegisterViewModel
 
     override fun onCreateView(

@@ -36,31 +36,53 @@ class FriendApplication : Application(), KodeinAware {
 
 
     override val kodein = Kodein.lazy {
+
+        /*AndroidX*/
         import(androidXModule(this@FriendApplication))
+
+        /*Database and SharedPreference*/
         bind() from singleton { FriendDatabase(instance()) }
         bind() from singleton { PreferenceHelper(instance()) }
-        /*CatListing and detils*/
-        bind() from singleton { instance<FriendDatabase>().catDao() }
+
+        /*API*/
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { CatAPIService(instance()) }
+
+        /*Dao*/
+        bind() from singleton { instance<FriendDatabase>().userDao() }
+        bind() from singleton { instance<FriendDatabase>().catDao() }
+
+        /*Datasource*/
         bind<CatBreedDataSource>() with singleton { CatBreedDataSourceImpl(instance()) }
         bind<CatDetailDataSource>() with singleton { CatDetailDataSourceImpl(instance()) }
-        bind<CatListRepo>() with singleton { CatListRepoImpl(instance(),instance()) }
+
+        /*Repo*/
+        bind<CatListRepo>() with singleton { CatListRepoImpl(instance(), instance()) }
         bind<CatDetailRepo>() with singleton { CatDetailRepoImpl(instance(), instance()) }
-        bind() from provider { CatListViewModelFactory(instance(),instance()) }
-        bind() from provider { CatDetailViewModelFactory(instance(),instance()) }
-        /*Login and register*/
-        bind() from singleton { instance<FriendDatabase>().userDao() }
         bind<LoginRepo>() with singleton { LoginRepoImpl(instance()) }
         bind<RegisterRepo>() with singleton { RegisterRepoImpl(instance()) }
-        bind() from provider { LoginViewModelFactory(instance()) }
-        bind() from provider { RegisterViewModelFactory(instance()) }
+
+        /*ViewModels*/
+        bind<LoginViewModelFactory>() with provider { LoginViewModelFactory(instance()) }
+        bind<RegisterViewModelFactory>() with provider { RegisterViewModelFactory(instance()) }
+        bind<CatListViewModelFactory>() with provider {
+            CatListViewModelFactory(
+                instance(),
+                instance()
+            )
+        }
+        bind<CatDetailViewModelFactory>() with provider {
+            CatDetailViewModelFactory(
+                instance(),
+                instance()
+            )
+        }
+
     }
 
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
         Stetho.initializeWithDefaults(this);
-        //PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
 }

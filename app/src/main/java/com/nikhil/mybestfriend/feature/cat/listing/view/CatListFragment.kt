@@ -23,17 +23,14 @@ import org.kodein.di.generic.instance
 
 class CatListFragment : BaseFragment(), OnCatItemClickListener {
 
-    private val factory: CatListViewModelFactory by instance()
+    private val factory: CatListViewModelFactory by instance<CatListViewModelFactory>()
     private lateinit var viewmodel : CatListViewModel
     private var catListAdaptor =
         CatListAdaptor(
             arrayListOf(), this
         )
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_cat_list, container, false)
     }
 

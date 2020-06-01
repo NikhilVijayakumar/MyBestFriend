@@ -35,14 +35,11 @@ import org.kodein.di.generic.instance
 
 class CatDetailFragment : BaseFragment() {
 
-    private val factory: CatDetailViewModelFactory by instance()
+    private val factory: CatDetailViewModelFactory by instance<CatDetailViewModelFactory>()
     private lateinit var viewmodel : CatDetailViewModel
     private lateinit var dataBinding: FragmentCatDetailBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
         dataBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_cat_detail,container,false)
         return dataBinding.root

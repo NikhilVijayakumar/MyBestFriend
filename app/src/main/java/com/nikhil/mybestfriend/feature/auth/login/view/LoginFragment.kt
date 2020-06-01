@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -28,12 +27,13 @@ import org.kodein.di.generic.instance
 
 class LoginFragment : BaseFragment() {
 
-    private val factory: LoginViewModelFactory by instance()
+    private val factory: LoginViewModelFactory by instance<LoginViewModelFactory>()
     private lateinit var viewmodel: LoginViewModel
     private var userList:List<UserEntity>? =null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)

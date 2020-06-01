@@ -12,12 +12,14 @@
     <string name="login_invalid">Invalid Email or password</string>
     <string name="login_message">Login</string>
     <string name="register_message">Register</string>
+    <string name="loading_cat_list">Fetching cat list please wait ..</string>
     <string name="recycle_error">Error while loading data</string>
     <string name="cat_name">Cat Name</string>
     <string name="cat_deescription">Cat Description</string>
     <string name="cat_origin">Origin : </string>
     <string name="life_span">Life span : </string>
     <string name="loading">Loading Image</string>
+    <string name="splash_loading">Loading application splash screen</string>
     <string name="cat_image">Cat Image</string>
     <string name="weight">Weight : </string>
     <string name="database_exception">Something went wrong while processing data. Please try again</string>

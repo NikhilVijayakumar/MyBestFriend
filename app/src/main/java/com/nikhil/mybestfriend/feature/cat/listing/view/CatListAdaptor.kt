@@ -35,22 +35,29 @@ class CatListAdaptor(val catList: MutableList<UnitCatEntity>,
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         holder.view.catName.text = catList.get(position).name
         holder.view.catLifeSpan.text = catList.get(position).lifeSpan
-        catList.get(position).url?.let {
-            loadImage(holder,it)
-        }
+        loadImage(holder, catList.get(position).url)
         holder.view.setOnClickListener {
            itemClickListener.onCatItemClicked(catList.get(position))
         }
     }
 
 
-    private fun loadImage(holder: CatViewHolder,url:String) {
-        Glide.with(holder.view.context)
-            .load(url) // image url
-            .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.placeholder) // any placeholder to load at start
-            .error(R.drawable.error)  // any image in case of error
-            .into(holder.view.catImageView);
+    private fun loadImage(holder: CatViewHolder,url:String?) {
+        if(url == null){
+            Glide.with(holder.view.context)
+                .load(R.drawable.placeholder)
+                .apply(RequestOptions.circleCropTransform())
+                .into(holder.view.catImageView);
+        }else{
+            Glide.with(holder.view.context)
+                .load(url) // image url
+                .apply(RequestOptions.circleCropTransform())
+                .placeholder(R.drawable.placeholder) // any placeholder to load at start
+                .error(R.drawable.error)  // any image in case of error
+                .into(holder.view.catImageView);
+        }
+
+
 
     }
 

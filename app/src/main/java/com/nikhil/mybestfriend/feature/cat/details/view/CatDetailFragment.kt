@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
+import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -40,7 +41,6 @@ class CatDetailFragment : BaseFragment() {
     private lateinit var dataBinding: FragmentCatDetailBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        setHasOptionsMenu(true)
         dataBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_cat_detail,container,false)
         return dataBinding.root
     }
@@ -95,13 +95,13 @@ class CatDetailFragment : BaseFragment() {
                     Palette.from(resource)
                         .generate { palette ->
                             context?.let {
-                                val backgroundColor = palette?.vibrantSwatch?.rgb?: ContextCompat.getColor(it, R.color.defaultBackgroundColor)
+                                val backgroundColor = palette?.vibrantSwatch?.rgb?: ContextCompat.getColor(it, R.color.colorPrimary)
                                 val textColor = palette?.vibrantSwatch?.bodyTextColor?: ContextCompat.getColor(it, R.color.defaultTextColor)
                                 val titleColor = palette?.vibrantSwatch?.titleTextColor?: ContextCompat.getColor(it, R.color.defaultTitleColor)
                                 val catPalette = CatPalette(backgroundColor,titleColor,textColor)
                                 dataBinding.palette = catPalette
                                 setRatingBarColor(textColor)
-                                toolbarColor(backgroundColor,titleColor)
+                                toolbarColor(backgroundColor)
                             }
 
                         }
@@ -109,14 +109,10 @@ class CatDetailFragment : BaseFragment() {
             })
     }
 
-    private fun toolbarColor(backgroundColor: Int, titleColor: Int) {
+    private fun toolbarColor(backgroundColor: Int) {
+
         activity?.let {
-            it.actionBar?.let {actionBar ->
-                actionBar .setBackgroundDrawable(ColorDrawable(backgroundColor))
-              val text: Spannable = SpannableString(actionBar.title)
-                text.setSpan( ForegroundColorSpan(titleColor), 0,text.toString().length , Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                actionBar.title = text.toString()
-            }
+            it.window.setStatusBarColor(backgroundColor);
         }
 
     }
@@ -126,21 +122,7 @@ class CatDetailFragment : BaseFragment() {
         stars.getDrawable(2).setColorFilter(BlendModeColorFilterCompat.createBlendModeColorFilterCompat(textColor, BlendModeCompat.SRC_ATOP))
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_settings,menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.action_settings -> {
-                val intent = Intent(context, SettingsActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-        }
-        return false
-    }
 
 }
 

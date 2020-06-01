@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseActivity() {
 
-    val ANIMATION_DURATION: Long = 1000
+    val ANIMATION_DURATION: Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

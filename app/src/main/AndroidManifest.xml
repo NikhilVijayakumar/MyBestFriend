@@ -26,7 +26,7 @@
             android:label="CatList" />
         <activity
             android:name=".feature.cat.details.view.CatDetailsActivity"
-            android:label="CatDetails" />
+            android:theme="@style/AppThemeNoActionBar" />
 
         <activity
             android:name=".feature.splash.view.SplashActivity"

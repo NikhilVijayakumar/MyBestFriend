@@ -2,9 +2,7 @@ package com.nikhil.mybestfriend.feature.cat.listing.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +14,7 @@ import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModel
 import com.nikhil.mybestfriend.feature.cat.listing.viewmodel.CatListViewModelFactory
 import com.nikhil.mybestfriend.feature.commons.enums.RepoStatus
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
+import com.nikhil.mybestfriend.feature.preferences.view.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_cat_list.*
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
@@ -31,6 +30,7 @@ class CatListFragment : BaseFragment(), OnCatItemClickListener {
         )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_cat_list, container, false)
     }
 
@@ -47,9 +47,6 @@ class CatListFragment : BaseFragment(), OnCatItemClickListener {
             layoutManager = LinearLayoutManager(context)
             adapter = catListAdaptor
         }
-        Glide.with(this)
-            .load(R.raw.loading_cat)
-            .into(loadingCatView);
         bindUI()
     }
 
@@ -66,17 +63,17 @@ class CatListFragment : BaseFragment(), OnCatItemClickListener {
                 RepoStatus.COMPLETED -> {
                     catRecyclerView.visibility = View.VISIBLE
                     catErrorTextView.visibility = View.GONE
-                    loadingCatView.visibility = View.GONE
+                    loadingGroup.visibility = View.GONE
                 }
                 RepoStatus.LOADING -> {
                     catRecyclerView.visibility = View.GONE
                     catErrorTextView.visibility = View.GONE
-                    loadingCatView.visibility = View.VISIBLE
+                    loadingGroup.visibility = View.VISIBLE
                 }
                 RepoStatus.ERROR -> {
                     catRecyclerView.visibility = View.GONE
                     catErrorTextView.visibility = View.VISIBLE
-                    loadingCatView.visibility = View.GONE
+                    loadingGroup.visibility = View.GONE
                 }
             }
 
@@ -89,6 +86,22 @@ class CatListFragment : BaseFragment(), OnCatItemClickListener {
         bundle.putSerializable(KEY, data)
         intent.putExtra(KEY, bundle)
         startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_settings,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_settings -> {
+                val intent = Intent(context, SettingsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return false
     }
 
 

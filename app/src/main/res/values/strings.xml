@@ -13,7 +13,7 @@
     <string name="login_message">Login</string>
     <string name="register_message">Register</string>
     <string name="loading_cat_list">Fetching cat list please wait ..</string>
-    <string name="recycle_error">Error while loading data</string>
+    <string name="data_loading_error">Error while loading data</string>
     <string name="cat_name">Cat Name</string>
     <string name="cat_deescription">Cat Description</string>
     <string name="cat_origin">Origin : </string>

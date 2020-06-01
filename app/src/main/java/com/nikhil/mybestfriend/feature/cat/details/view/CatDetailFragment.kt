@@ -1,16 +1,12 @@
 package com.nikhil.mybestfriend.feature.cat.details.view
 
-import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
-import android.os.Build
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
@@ -28,7 +24,6 @@ import com.nikhil.mybestfriend.feature.cat.data.view.CatPalette
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModel
 import com.nikhil.mybestfriend.feature.cat.details.viewmodel.CatDetailViewModelFactory
 import com.nikhil.mybestfriend.feature.commons.view.BaseFragment
-import com.nikhil.mybestfriend.feature.preferences.view.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_cat_detail.*
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
@@ -110,11 +105,15 @@ class CatDetailFragment : BaseFragment() {
     }
 
     private fun toolbarColor(backgroundColor: Int) {
-
         activity?.let {
             it.window.setStatusBarColor(backgroundColor);
         }
+            hideProgressLoading()
+    }
 
+    private fun hideProgressLoading() {
+        loadingGroup.visibility = View.GONE
+        catDetailLayout.visibility = View.VISIBLE
     }
 
     private fun setRatingBarColor(textColor: Int) {

@@ -47,9 +47,6 @@ class LoginFragment : BaseFragment() {
     private fun initData() {
         viewmodel = ViewModelProviders.of(this, factory)
             .get(LoginViewModel::class.java)
-        Glide.with(this)
-            .load(R.raw.loading_cat)
-            .into(loadingCatView);
         bindUI()
         bindUI()
     }
@@ -59,21 +56,17 @@ class LoginFragment : BaseFragment() {
             data?.let { status ->
                 when (status) {
                     RepoStatus.COMPLETED -> {
-                        loadingCatView.visibility = View.GONE
                         gotoHome()
                     }
                     RepoStatus.LOADING -> {
-                        loadingCatView.visibility = View.VISIBLE
                     }
                     RepoStatus.ERROR -> {
-                        loadingCatView.visibility = View.GONE
                         context?.let {
                             showSnackBar(it.getString(R.string.login_invalid))
                         }
 
                     }
                     RepoStatus.DATABASE_EXCEPTION -> {
-                        loadingCatView.visibility = View.GONE
                         context?.let {
                             showSnackBar(it.getString(R.string.database_exception))
                         }

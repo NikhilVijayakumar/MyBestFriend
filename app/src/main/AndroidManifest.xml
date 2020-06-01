@@ -13,14 +13,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".feature.preferences.view.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".feature.auth.login.view.LoginActivity" />
-        <activity android:name=".feature.cat.listing.view.CatListActivity" />
-        <activity android:name=".feature.cat.details.view.CatDetailsActivity" />
-        <activity android:name=".feature.splash.view.SplashActivity">
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".feature.auth.login.view.LoginActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+
+        <activity
+            android:name=".feature.cat.listing.view.CatListActivity"
+            android:label="CatList" />
+        <activity
+            android:name=".feature.cat.details.view.CatDetailsActivity"
+            android:label="CatDetails" />
+
+        <activity
+            android:name=".feature.splash.view.SplashActivity"
+            android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

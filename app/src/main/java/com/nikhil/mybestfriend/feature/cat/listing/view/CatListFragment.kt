@@ -6,7 +6,6 @@ import android.view.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 import com.nikhil.mybestfriend.feature.cat.details.view.CatDetailsActivity

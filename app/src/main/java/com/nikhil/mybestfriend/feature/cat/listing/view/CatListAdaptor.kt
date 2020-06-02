@@ -5,16 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.databinding.ItemCatBinding
 import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
-import kotlinx.android.synthetic.main.item_cat.view.*
 
 
-class CatListAdaptor(val catList: MutableList<UnitCatEntity>,
-                     val itemClickListener: OnCatItemClickListener) :
+class CatListAdaptor(
+    private val catList: MutableList<UnitCatEntity>,
+    val itemClickListener: OnCatItemClickListener) :
     RecyclerView.Adapter<CatListAdaptor.CatViewHolder>() {
     fun updateList(list: List<UnitCatEntity>) {
         catList.clear()
@@ -34,11 +32,7 @@ class CatListAdaptor(val catList: MutableList<UnitCatEntity>,
 
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         val data = catList[position]
-        val onclickListner = object : View.OnClickListener{
-            override fun onClick(v: View?) {
-                itemClickListener.onCatItemClicked(data)
-            }
-        }
+        val onclickListner = View.OnClickListener { itemClickListener.onCatItemClicked(data) }
         holder.view.entity = data
         holder.view.listner = onclickListner
     }

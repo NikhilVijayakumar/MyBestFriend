@@ -22,14 +22,14 @@ const val BASE_URL = "https://api.thecatapi.com/v1/"
 interface CatAPIService {
 
     @GET("breeds")
-    fun getCatBreed(
+    fun getCatBreedAsync(
         @Query("limit") limit: Int = 10 ,
         @Query("page") page: Int = 0
     ): Deferred<List<CatBreed>>
 
 
     @GET("images/search")
-    fun getCatDetails
+    fun getCatDetailsAsync
                 (
         @Query("breed_ids") breedIds: String,
         @Query("include_breeds") includeBreeds: Boolean = true

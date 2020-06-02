@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nikhil.mybestfriend.feature.auth.data.db.entity.UserEntity
 import com.nikhil.mybestfriend.feature.cat.data.db.doa.CatDoa
-import com.nikhil.mybestfriend.feature.cat.data.db.doa.UserDoa
+import com.nikhil.mybestfriend.feature.auth.data.db.doa.UserDoa
 import com.nikhil.mybestfriend.feature.cat.data.db.entity.CatEntity
 
 @Database(
@@ -21,7 +21,7 @@ abstract class FriendDatabase : RoomDatabase() {
     companion object {
         @Volatile private var instance: FriendDatabase? = null
         private val LOCK = Any()
-        private val DB_NAME = "myBestFriend.db"
+        private const val DB_NAME = "myBestFriend.db"
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: buildDatabase(context).also { instance = it }

@@ -22,7 +22,7 @@ class CatBreedDataSourceImpl(private val apiService: CatAPIService) :
         try {
             _repoStatus.postValue(RepoStatus.LOADING)
             val catBreedData = apiService
-                .getCatBreed(limit, page)
+                .getCatBreedAsync(limit, page)
                 .await()
             _repoStatus.postValue(RepoStatus.COMPLETED)
             _catList.postValue(catBreedData)

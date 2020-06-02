@@ -1,4 +1,4 @@
-package com.nikhil.mybestfriend.feature.cat.data.db.doa
+package com.nikhil.mybestfriend.feature.auth.data.db.doa
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

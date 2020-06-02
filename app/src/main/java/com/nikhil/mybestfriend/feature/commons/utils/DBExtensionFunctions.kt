@@ -4,9 +4,9 @@ import com.nikhil.mybestfriend.feature.cat.data.api.response.CatBreed
 import com.nikhil.mybestfriend.feature.cat.data.db.entity.CatEntity
 
 fun catRating(breed: CatBreed): Float {
-    var catCommons: Float = catCommonFeatures(breed)
-    var catCore: Float = catCoreFeatures(breed)
-    var catproblems: Float = catIssues(breed)
+    val catCommons: Float = catCommonFeatures(breed)
+    val catCore: Float = catCoreFeatures(breed)
+    val catproblems: Float = catIssues(breed)
     var rating = (catCommons + catCore) / 1.5f
     rating -= (catproblems)
     return rating
@@ -61,7 +61,7 @@ fun CatBreed.toCatEntity(): CatEntity {
 }
 
 fun List<CatBreed>.toCatEntityList(): List<CatEntity> {
-    val entityList: MutableList<CatEntity> = ArrayList<CatEntity>()
+    val entityList: MutableList<CatEntity> = ArrayList()
     for (breed in this){
         entityList.add(breed.toCatEntity())
     }

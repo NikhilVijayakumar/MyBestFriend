@@ -6,8 +6,8 @@ import com.nikhil.mybestfriend.feature.cat.data.repo.CatListRepo
 import com.nikhil.mybestfriend.feature.preferences.data.PreferenceHelper
 
 class CatListViewModelFactory(
-    val catListRepo: CatListRepo,
-    val preferenceHelper: PreferenceHelper
+    private val catListRepo: CatListRepo,
+    private val preferenceHelper: PreferenceHelper
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")

@@ -8,8 +8,9 @@ import com.nikhil.mybestfriend.feature.commons.utils.lazyDeferred
 import com.nikhil.mybestfriend.feature.commons.viewmodel.BaseViewModel
 import com.nikhil.mybestfriend.feature.preferences.data.PreferenceHelper
 
-class CatListViewModel(val catListRepo: CatListRepo,
-                       val preferenceHelper: PreferenceHelper) : BaseViewModel() {
+class CatListViewModel(
+    private val catListRepo: CatListRepo,
+    private val preferenceHelper: PreferenceHelper) : BaseViewModel() {
 
     private val unitSystem
         get() = if(preferenceHelper.isMetric()){
@@ -22,7 +23,7 @@ class CatListViewModel(val catListRepo: CatListRepo,
     val status: LiveData<RepoStatus> = catListRepo.repoStatus
 
 
-    val isMetricUnit: Boolean
+    private val isMetricUnit: Boolean
         get() = unitSystem == UnitSystem.METRIC
 
     val catList by lazyDeferred {

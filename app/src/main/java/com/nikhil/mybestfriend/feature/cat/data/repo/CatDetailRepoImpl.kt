@@ -16,9 +16,9 @@ class CatDetailRepoImpl(
     private var entity: UnitCatEntity? = null
 
     init {
-        catDetailDataSource.catDetailList.observeForever {
+        catDetailDataSource.catDetailList.observeForever {catList->
 
-            updateCatDetails(it.get(0).url)
+            updateCatDetails(catList[0].url)
         }
     }
 

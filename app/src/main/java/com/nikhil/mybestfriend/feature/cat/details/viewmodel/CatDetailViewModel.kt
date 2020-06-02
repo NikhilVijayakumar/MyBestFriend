@@ -8,8 +8,9 @@ import com.nikhil.mybestfriend.feature.commons.viewmodel.BaseViewModel
 import com.nikhil.mybestfriend.feature.preferences.data.PreferenceHelper
 
 
-class CatDetailViewModel(val catDetailRepo: CatDetailRepo,
-                         val preferenceHelper: PreferenceHelper) : BaseViewModel() {
+class CatDetailViewModel(
+    private val catDetailRepo: CatDetailRepo,
+    private val preferenceHelper: PreferenceHelper) : BaseViewModel() {
     var data: UnitCatEntity? = null
     private val unitSystem
         get() = if(preferenceHelper.isMetric()){
@@ -18,7 +19,7 @@ class CatDetailViewModel(val catDetailRepo: CatDetailRepo,
             UnitSystem.IMPERIAL
         }
 
-    val isMetricUnit: Boolean
+    private val isMetricUnit: Boolean
         get() = unitSystem == UnitSystem.METRIC
 
     val unitCatEntity by lazyDeferred {

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.nikhil.mybestfriend.R
 import com.nikhil.mybestfriend.feature.auth.data.db.entity.UserEntity

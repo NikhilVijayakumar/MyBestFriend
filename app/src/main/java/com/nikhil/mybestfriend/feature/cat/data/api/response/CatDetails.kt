@@ -1,7 +1,6 @@
 package com.nikhil.mybestfriend.feature.cat.data.api.response
 
 import com.google.gson.annotations.SerializedName
-import com.nikhil.mybestfriend.feature.cat.data.api.response.CatBreed
 
 
 data class CatDetails(

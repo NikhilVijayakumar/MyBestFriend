@@ -17,7 +17,7 @@ class CatDetailDataSourceImpl(private val apiService: CatAPIService) :
     override suspend fun fetchCatBreed(breedIds: String, includeBreeds: Boolean) {
         try {
             val catDetails = apiService
-                .getCatDetails(breedIds, includeBreeds)
+                .getCatDetailsAsync(breedIds, includeBreeds)
                 .await()
             _catDetailList.postValue(catDetails)
         } catch (e: NoConnectionException) {

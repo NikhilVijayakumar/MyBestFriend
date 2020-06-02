@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/catListFragment"
         android:name="com.nikhil.mybestfriend.feature.cat.details.view.CatDetailFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

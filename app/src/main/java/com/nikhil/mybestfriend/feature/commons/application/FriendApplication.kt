@@ -83,6 +83,6 @@ class FriendApplication : Application(), KodeinAware {
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
-        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this)
     }
 }

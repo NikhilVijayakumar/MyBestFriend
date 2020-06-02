@@ -20,6 +20,4 @@ data class ImperialCatEntity(
     override val rating: Float,
     @ColumnInfo(name = "imperialWeight")
     override val weight: String
-) : UnitCatEntity {
-
-}
+) : UnitCatEntity

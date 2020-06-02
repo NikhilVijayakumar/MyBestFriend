@@ -4,9 +4,7 @@
     <color name="colorPrimaryDark">#07347c</color>
     <color name="colorAccent">#d2f7dc</color>
     <color name="colorAccentDark">#3d724c</color>
-    <color name="defaultBackgroundColor">#eff0f1</color>
     <color name="defaultTitleColor">#4c4c4d</color>
     <color name="defaultTextColor">#4f4f50</color>
     <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
 </resources>

@@ -12,7 +12,7 @@ interface CatDoa {
     fun upsert(catEntity: CatEntity)
 
     @Transaction
-    open fun updateData(catEntityList: List<CatEntity>) {
+    fun updateData(catEntityList: List<CatEntity>) {
         deleteAllCats()
         insertAll(catEntityList)
     }

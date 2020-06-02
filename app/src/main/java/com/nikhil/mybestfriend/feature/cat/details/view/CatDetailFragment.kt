@@ -72,7 +72,7 @@ class CatDetailFragment : BaseFragment() {
                  .placeholder(R.drawable.placeholder)
                  .error(R.drawable.error)  // any image in case of error
                  .fitCenter()
-                .into(catImageView);
+                .into(catImageView)
         setPalette(url)
 
     }
@@ -106,7 +106,7 @@ class CatDetailFragment : BaseFragment() {
 
     private fun toolbarColor(backgroundColor: Int) {
         activity?.let {
-            it.window.setStatusBarColor(backgroundColor);
+            it.window.statusBarColor = backgroundColor
         }
             hideProgressLoading()
     }
@@ -118,7 +118,8 @@ class CatDetailFragment : BaseFragment() {
 
     private fun setRatingBarColor(textColor: Int) {
         val stars = catRatingBar.progressDrawable as LayerDrawable
-        stars.getDrawable(2).setColorFilter(BlendModeColorFilterCompat.createBlendModeColorFilterCompat(textColor, BlendModeCompat.SRC_ATOP))
+        stars.getDrawable(2).colorFilter =
+            BlendModeColorFilterCompat.createBlendModeColorFilterCompat(textColor, BlendModeCompat.SRC_ATOP)
     }
 
 

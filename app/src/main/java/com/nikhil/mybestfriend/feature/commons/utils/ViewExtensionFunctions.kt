@@ -63,14 +63,14 @@ fun ImageView.load(url:String?){
         Glide.with(context)
             .load(R.drawable.placeholder)
             .apply(RequestOptions.circleCropTransform())
-            .into(this);
+            .into(this)
     }else{
         Glide.with(context)
             .load(url) // image url
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.placeholder) // any placeholder to load at start
             .error(R.drawable.error)  // any image in case of error
-            .into(this);
+            .into(this)
     }
 }
 

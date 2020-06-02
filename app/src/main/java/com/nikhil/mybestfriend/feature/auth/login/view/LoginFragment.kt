@@ -85,7 +85,7 @@ class LoginFragment : BaseFragment() {
 
     private fun showSnackBar(message: String) {
         view?.let {
-            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
         }
 
     }

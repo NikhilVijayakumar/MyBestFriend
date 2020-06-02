@@ -17,7 +17,7 @@ class CatListAdaptor(val catList: MutableList<UnitCatEntity>,
                      val itemClickListener: OnCatItemClickListener) :
     RecyclerView.Adapter<CatListAdaptor.CatViewHolder>() {
     fun updateList(list: List<UnitCatEntity>) {
-        catList.clear();
+        catList.clear()
         catList.addAll(list)
         notifyDataSetChanged()
     }

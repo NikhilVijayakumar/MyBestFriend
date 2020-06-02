@@ -107,7 +107,7 @@ class CatListFragment : BaseFragment(), OnCatItemClickListener {
 
 
     companion object {
-        const val KEY: String = "CatListFragment";
+        const val KEY: String = "CatListFragment"
     }
 }
 

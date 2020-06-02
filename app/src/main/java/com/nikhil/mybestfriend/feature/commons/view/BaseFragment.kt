@@ -34,7 +34,7 @@ abstract  class BaseFragment : Fragment(), CoroutineScope, KodeinAware {
         initFragment()
     }
 
-    open protected fun initFragment()  {
+    protected open fun initFragment()  {
 
     }
 

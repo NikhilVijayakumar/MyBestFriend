@@ -1,8 +1,16 @@
 package com.nikhil.mybestfriend.feature.commons.utils
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.nikhil.mybestfriend.R
+
+val TextInputEditText.data: String
+    get() = this.text.toString().trim()
+
 
 fun String.isValidEmail(): Boolean {
     return android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
@@ -50,8 +58,26 @@ fun TextInputLayout.isValidEmail(): Boolean {
     return false
 }
 
-val TextInputEditText.data: String
-    get() = this.text.toString().trim()
+fun ImageView.load(url:String?){
+    if(url == null){
+        Glide.with(context)
+            .load(R.drawable.placeholder)
+            .apply(RequestOptions.circleCropTransform())
+            .into(this);
+    }else{
+        Glide.with(context)
+            .load(url) // image url
+            .apply(RequestOptions.circleCropTransform())
+            .placeholder(R.drawable.placeholder) // any placeholder to load at start
+            .error(R.drawable.error)  // any image in case of error
+            .into(this);
+    }
+}
+
+@BindingAdapter("android:imageUrl")
+fun loadImage(view:ImageView,url:String?){
+    view.load(url)
+}
 
 
 

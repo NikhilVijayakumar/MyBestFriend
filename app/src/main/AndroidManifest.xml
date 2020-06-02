@@ -17,14 +17,14 @@
 
         <activity
             android:name=".feature.preferences.view.SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/settings" />
         <activity
             android:name=".feature.auth.login.view.LoginActivity"
             android:theme="@style/AppThemeNoActionBar" />
 
         <activity
             android:name=".feature.cat.listing.view.CatListActivity"
-            android:label="CatList" />
+            android:label="@string/catlist_activity_title" />
         <activity
             android:name=".feature.cat.details.view.CatDetailsActivity"
             android:theme="@style/AppThemeNoActionBar" />

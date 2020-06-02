@@ -2,15 +2,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nikhil.mybestfriend">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".feature.commons.application.FriendApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".feature.login.view.LoginActivity"></activity>
-        <activity android:name=".feature.splash.view.SplashActivity">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
+
+        <activity
+            android:name=".feature.preferences.view.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".feature.auth.login.view.LoginActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+
+        <activity
+            android:name=".feature.cat.listing.view.CatListActivity"
+            android:label="CatList" />
+        <activity
+            android:name=".feature.cat.details.view.CatDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+
+        <activity
+            android:name=".feature.splash.view.SplashActivity"
+            android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

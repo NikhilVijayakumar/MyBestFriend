@@ -1,14 +1,25 @@
 <resources>
-    <string name="app_name">MyBestFriend</string>
     <string name="register">Sign up</string>
     <string name="login">Sign in</string>
     <string name="email">Email</string>
+    <string name="email_empty">Email cannot be empty</string>
+    <string name="email_error_format">Email format error</string>
     <string name="password">Password</string>
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="password_error_length">Password must be 6 character long</string>
+    <string name="login_invalid">Invalid Email or password</string>
     <string name="login_message">Login</string>
-    <string name="register_message">Register</string>
-    <string name="recycle_error">Error while loading data</string>
-    <string name="cat_name">Cat Name</string>
-    <string name="cat_purpose">Cat Purpose</string>
-    <string name="cat_temperment">Cat Temperament</string>
-    <string name="life_span">Life span</string>
+    <string name="register_message">registration</string>
+    <string name="loading_cat_list">Fetching cat list please wait ..</string>
+    <string name="data_loading_error">Error while loading data</string>
+    <string name="cat_origin">Origin : </string>
+    <string name="life_span">Life span : </string>
+    <string name="loading">Loading Image</string>
+    <string name="splash_loading">Loading application splash screen</string>
+    <string name="cat_image">Cat Image</string>
+    <string name="weight">Weight : </string>
+    <string name="database_exception">Something went wrong while processing data. Please try again</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="settings">Settings</string>
+
 </resources>

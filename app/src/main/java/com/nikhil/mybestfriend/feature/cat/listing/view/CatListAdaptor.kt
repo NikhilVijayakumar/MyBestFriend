@@ -12,7 +12,7 @@ import com.nikhil.mybestfriend.feature.cat.data.db.localized.UnitCatEntity
 
 class CatListAdaptor(
     private val catList: MutableList<UnitCatEntity>,
-    val itemClickListener: OnCatItemClickListener) :
+    private val itemClickListener: OnCatItemClickListener) :
     RecyclerView.Adapter<CatListAdaptor.CatViewHolder>() {
     fun updateList(list: List<UnitCatEntity>) {
         catList.clear()
@@ -32,9 +32,9 @@ class CatListAdaptor(
 
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         val data = catList[position]
-        val onclickListner = View.OnClickListener { itemClickListener.onCatItemClicked(data) }
+        val onClickListener = View.OnClickListener { itemClickListener.onCatItemClicked(data) }
         holder.view.entity = data
-        holder.view.listner = onclickListner
+        holder.view.listener = onClickListener
     }
 
     class CatViewHolder(var view: ItemCatBinding) : RecyclerView.ViewHolder(view.root)

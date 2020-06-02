@@ -8,7 +8,7 @@
     tools:context=".feature.auth.register.view.RegisterFragment">
 
     <TextView
-        android:id="@+id/regesterTextView"
+        android:id="@+id/registerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
@@ -31,7 +31,7 @@
         app:cardMaxElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regesterTextView">
+        app:layout_constraintTop_toBottomOf="@+id/registerTextView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

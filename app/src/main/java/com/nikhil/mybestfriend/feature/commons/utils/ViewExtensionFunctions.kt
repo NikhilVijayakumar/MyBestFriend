@@ -50,7 +50,7 @@ fun TextInputLayout.isValidEmail(): Boolean {
             return false
         }
         if (!email.isValidEmail()) {
-            this.error = context.getString(R.string.email_error_fromat)
+            this.error = context.getString(R.string.email_error_format)
             return false
         }
         return true

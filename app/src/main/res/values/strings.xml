@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">MyBestFriend</string>
     <string name="register">Sign up</string>
     <string name="login">Sign in</string>
     <string name="email">Email</string>
